@@ -49,11 +49,7 @@ function menuFactory (items) {
 
   const menuBtn = document.querySelector('.menu-button');
   menuBtn.addEventListener("click", (event) => {
-    if (menu.classList.contains('menu--open')) {
-      menu.classList.remove('menu--open');
-    } else {
-      menu.classList.add('menu--open');
-    }
+    menu.classList.toggle('menu--open');
   })
 
   return menu;

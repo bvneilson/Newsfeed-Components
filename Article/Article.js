@@ -145,11 +145,7 @@ function articleFactory (articleData) {
   infoParagraph3.textContent = articleData.thirdParagraph;
   expand.textContent = 'EXPAND';
   expand.addEventListener("click", (event) => {
-    if (article.classList.contains('article-open')) {
-      article.classList.remove('article-open');
-    } else {
-      article.classList.add('article-open');
-    }
+    article.classList.toggle('article-open');
   })
 
   article.classList.add('article');

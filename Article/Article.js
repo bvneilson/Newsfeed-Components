@@ -37,9 +37,9 @@ const data = [
         mewing kittens Remus Lupin. Palominos scarlet train black robes, Metamorphimagus Niffler dead easy second bedroom. Padma
         and Parvati Sorting Hat Minister of Magic blue turban remember my last.`,
 
-    thirdParagraph: `Toad-like smile Flourish and Blotts he knew I’d come back Quidditch World Cup. Fat Lady baubles banana fritters fairy lights 
-        Petrificus Totalus. So thirsty, deluminator firs’ years follow me 12 inches of parchment. Head Boy start-of-term banquet Cleansweep Seven 
-        roaring lion hat. Unicorn blood crossbow mars is bright tonight, feast Norwegian Ridgeback. Come seek us where our voices sound, we cannot 
+    thirdParagraph: `Toad-like smile Flourish and Blotts he knew I’d come back Quidditch World Cup. Fat Lady baubles banana fritters fairy lights
+        Petrificus Totalus. So thirsty, deluminator firs’ years follow me 12 inches of parchment. Head Boy start-of-term banquet Cleansweep Seven
+        roaring lion hat. Unicorn blood crossbow mars is bright tonight, feast Norwegian Ridgeback. Come seek us where our voices sound, we cannot
         sing above the ground, Ginny Weasley bright red. Fanged frisbees, phoenix tears good clean match.`
   },
   {
@@ -66,8 +66,8 @@ const data = [
         consectetur adipiscing elit. Nidoran Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nidorino Lorem ipsum dolor
         sit amet, consectetur adipiscing elit. Nidoking Lorem ipsum`,
 
-    thirdParagraph: `Gotta catch 'em all Horsea gym Ninjask Absol Sinnoh Poliwag. Gotta catch 'em all Youngster wants to fight Soda Pop Floatzel 
-        Leech Life Seismitoad Ariados. Earthquake Pokemon Glitch City Tail Whip Skitty Ekans Dialga. Ut aliquip ex ea commodo consequat James 
+    thirdParagraph: `Gotta catch 'em all Horsea gym Ninjask Absol Sinnoh Poliwag. Gotta catch 'em all Youngster wants to fight Soda Pop Floatzel
+        Leech Life Seismitoad Ariados. Earthquake Pokemon Glitch City Tail Whip Skitty Ekans Dialga. Ut aliquip ex ea commodo consequat James
         Castform Lotad the power that's inside Burnt Berry Makuhita. Ghost Ariados Corphish Dusclops Golbat Gligar Zweilous.`
   },
   {
@@ -85,11 +85,20 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Bacon is the GREATEST',
+    date: 'Jan 19, 2029',
+    firstParagraph: `Bacon ipsum dolor amet shank cow turkey meatball, strip steak porchetta swine ham ribeye turducken shoulder filet mignon. Short ribs ground round pork chop, porchetta salami tongue cow pork belly ribeye ham hock. Meatloaf pork chop beef, pastrami meatball tail tri-tip burgdoggen pancetta leberkas. Shoulder drumstick swine spare ribs jerky, jowl tongue tri-tip doner beef ribs andouille. Spare ribs corned beef cow beef ribs, chuck ground round tri-tip bacon pastrami shankle pork frankfurter salami. Ground round biltong tenderloin, ham alcatra short ribs tail jowl salami porchetta landjaeger doner t-bone. Ball tip beef rump tri-tip prosciutto frankfurter fatback chuck shoulder buffalo pig.`,
+
+    secondParagraph: `Beef meatloaf andouille tail, pastrami prosciutto shank boudin. Pork belly landjaeger flank drumstick ham hock alcatra. Tail kevin shoulder bacon. Doner tenderloin short ribs, meatball ham tongue alcatra. Strip steak brisket tenderloin short ribs pork tongue andouille chuck filet mignon salami biltong ham doner.`,
+
+    thirdParagraph: `Drumstick meatloaf shankle t-bone ham hock swine alcatra shoulder beef ribs capicola bacon. Salami pork loin bacon fatback spare ribs t-bone ham hock biltong buffalo doner pastrami chicken. Jowl kevin spare ribs, pig ball tip biltong tri-tip meatloaf burgdoggen. Pork belly alcatra filet mignon ham. Prosciutto andouille drumstick ribeye, tri-tip boudin short loin doner pork kevin pork belly corned beef venison swine alcatra. Strip steak porchetta chicken pork loin beef drumstick fatback, ground round bacon. Jowl shankle cupim pork chop tongue pork loin bacon corned beef sirloin porchetta flank filet mignon buffalo leberkas.`
   }
 ];
 
-/* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
-  
+/* Step 1: Create a function that creates a component. You will want your component to look like the template below:
+
   <div class="article">
     <h2>{title of the article}</h2>
     <p class="date">{date of the article}</p>
@@ -112,3 +121,41 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function articleFactory (articleData) {
+  const article = document.createElement('div');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const infoParagraph1 = document.createElement('p');
+  const infoParagraph2 = document.createElement('p');
+  const infoParagraph3 = document.createElement('p');
+  const expand = document.createElement('span');
+
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(infoParagraph1);
+  article.appendChild(infoParagraph2);
+  article.appendChild(infoParagraph3);
+  article.appendChild(expand);
+
+  title.textContent = articleData.title;
+  date.textContent = articleData.date;
+  infoParagraph1.textContent = articleData.firstParagraph;
+  infoParagraph2.textContent = articleData.secondParagraph;
+  infoParagraph3.textContent = articleData.thirdParagraph;
+  expand.textContent = 'EXPAND';
+  expand.addEventListener("click", (event) => {
+    article.classList.toggle('article-open');
+  })
+
+  article.classList.add('article');
+  date.classList.add('date');
+  expand.classList.add('expandButton');
+
+  return article;
+}
+
+const parent = document.querySelector('.articles');
+data.map((item) => {
+  parent.appendChild(articleFactory(item));
+})
